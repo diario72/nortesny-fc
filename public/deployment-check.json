@@ -1,6 +1,6 @@
 {
   "project": "Nortesny FC",
-  "marker": "nortesny-header-mobile-instagram-v2",
-  "source": "GitHub",
+  "marker": "nortesny-clean-cloudflare-deploy-20261007",
+  "source": "Cloudflare Git integration",
   "includes": ["centered-crest", "club-tagline-mobile", "instagram-mobile"]
 }
