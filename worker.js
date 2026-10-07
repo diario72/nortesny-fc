@@ -127,9 +127,9 @@ export default {async fetch(req,env){try{
   const news=[...(d.news||[])].sort((a,b)=>b.date.localeCompare(a.date));const newsHTML=news.length?news.map(x=>`<article class="official-news">${x.presentation==='official'?'<div class="official-cover" role="img" aria-label="Escudo de Nortesny FC bordado sobre la camiseta del equipo"></div>':''}<div class="official-body"><div class="official-kicker">NORTESNY FC · COMUNICACIÓN OFICIAL</div><h3>${esc(x.title)}</h3>${x.date?'<time datetime="'+esc(x.date)+'">'+esc(x.date.split('-').reverse().join('/'))+'</time>':''}<div class="official-text">${esc(x.content)}</div>${x.instagram==='https://www.instagram.com/p/DeKlGG2Syuq/'?'<p><a href="https://www.instagram.com/p/DeKlGG2Syuq/" target="_blank" rel="noopener noreferrer">Ver publicación en Instagram</a></p>':''}<div class="official-signature">NORTESNY FC <span>ONE TEAM. ONE GOAL.</span></div></div></article>`).join(''):'<div class="panel"><p>Próximamente publicaremos novedades del equipo.</p></div>';s=s.replace('<div id="news-list"></div>',()=>'<div id="news-list">'+newsHTML+'</div>');
   const headerUpgrade=`<style id="nortesny-header-upgrade">
 header{position:relative!important;border-bottom:2px solid #1859d4!important;box-shadow:0 3px 14px rgba(24,89,212,.12)}
-header .brand{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;display:flex!important;align-items:center!important;justify-content:center!important;width:auto!important;height:auto!important;font-size:0!important;letter-spacing:0!important;gap:0!important}
-header .brand img{width:62px!important;height:72px!important;object-fit:contain!important;margin:0!important;grid-row:auto!important}
-.nortesny-club-copy{position:absolute;left:32px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:3px;line-height:1}
+header .brand{position:absolute!important;left:32px!important;top:50%!important;transform:translateY(-50%)!important;display:flex!important;align-items:center!important;width:auto!important;height:auto!important}.nortesny-center-crest{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:72px;object-fit:contain}
+header .brand img{display:none!important}
+.nortesny-club-copy{display:none!important}
 .nortesny-club-copy strong{font-size:14px;letter-spacing:1.5px;color:#fff;font-weight:900}
 .nortesny-club-copy span{font-size:9px;letter-spacing:1.7px;color:#8fa5c9;font-weight:700;text-transform:uppercase}
 .nortesny-instagram{position:absolute;right:32px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:10px;min-height:46px;padding:7px 12px 7px 9px;color:#fff;text-decoration:none;border:1px solid rgba(117,158,235,.28);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(24,89,212,.12));box-shadow:inset 0 1px 0 rgba(255,255,255,.06);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .2s ease,border-color .2s ease,background .2s ease,box-shadow .2s ease}
@@ -138,8 +138,8 @@ header .brand img{width:62px!important;height:72px!important;object-fit:contain!
 .ig-copy{display:flex;flex-direction:column;line-height:1.05}.ig-copy small{color:#8fa5c9;font-size:8px;letter-spacing:1.4px;font-weight:700;margin-bottom:4px}.ig-copy strong{color:#f8fbff;font-size:12px;letter-spacing:.15px}.ig-arrow{color:#7fa8f6;font-size:14px;margin-left:2px}
 @media(max-width:700px){
  header{height:92px!important;padding:10px 12px!important}
- header .brand img{width:48px!important;height:58px!important}
- .nortesny-club-copy{left:12px;max-width:92px;gap:3px}
+ header .brand{left:12px!important}.nortesny-center-crest{width:48px;height:58px}
+ .nortesny-club-copy{display:none!important}
  .nortesny-club-copy strong{font-size:10px;letter-spacing:.7px;white-space:nowrap}
  .nortesny-club-copy span{font-size:6.5px;letter-spacing:.65px;white-space:nowrap}
  .nortesny-instagram{right:10px;min-height:38px;padding:5px 7px 5px 5px;gap:6px;border-radius:11px}
@@ -149,9 +149,9 @@ header .brand img{width:62px!important;height:72px!important;object-fit:contain!
 @media(max-width:390px){
  .nortesny-club-copy{max-width:76px}.nortesny-club-copy strong{font-size:9px}.nortesny-club-copy span{font-size:5.8px;letter-spacing:.4px}
  .nortesny-instagram{right:7px;padding-right:6px}.ig-copy strong{font-size:8px}
- header .brand img{width:44px!important;height:54px!important}
+ .nortesny-center-crest{width:44px;height:54px}
 }
-</style><script id="nortesny-header-upgrade-script">document.addEventListener('DOMContentLoaded',()=>{const h=document.querySelector('header'),b=h&&h.querySelector('.brand');if(!h||!b)return;Array.from(b.children).forEach(el=>{if(el.tagName!=='IMG')el.style.setProperty('display','none','important')});if(!h.querySelector('.nortesny-club-copy')){const club=document.createElement('div');club.className='nortesny-club-copy';club.innerHTML='<strong>NORTESNY FC</strong><span>ONE TEAM. ONE GOAL.</span>';h.appendChild(club)}if(!h.querySelector('.nortesny-instagram')){const a=document.createElement('a');a.className='nortesny-instagram';a.href='https://www.instagram.com/nortesnyfc/';a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','Nortesny FC en Instagram');a.innerHTML='<span class="ig-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.7" r="1" fill="currentColor"/></svg></span><span class="ig-copy"><small>SÍGUENOS</small><strong>@nortesnyfc</strong></span><span class="ig-arrow" aria-hidden="true">↗</span>';h.appendChild(a)}})</script>`;
+</style><script id="nortesny-header-upgrade-script">document.addEventListener('DOMContentLoaded',()=>{const h=document.querySelector('header'),b=h&&h.querySelector('.brand');if(!h||!b)return;const originalImg=b.querySelector('img');if(originalImg&&!h.querySelector('.nortesny-center-crest')){const crest=originalImg.cloneNode(true);crest.className='nortesny-center-crest';h.appendChild(crest)}if(!h.querySelector('.nortesny-instagram')){const a=document.createElement('a');a.className='nortesny-instagram';a.href='https://www.instagram.com/nortesnyfc/';a.target='_blank';a.rel='noopener noreferrer';a.setAttribute('aria-label','Nortesny FC en Instagram');a.innerHTML='<span class="ig-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.1" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.7" r="1" fill="currentColor"/></svg></span><span class="ig-copy"><small>SÍGUENOS</small><strong>@nortesnyfc</strong></span><span class="ig-arrow" aria-hidden="true">↗</span>';h.appendChild(a)}})</script>`;
   s=s.replace('</head>',headerUpgrade+'</head>');
   s=s.replace('</body>',extra+'</body>');return new Response(s,{headers:{'Content-Type':'text/html;charset=utf-8','Cache-Control':'no-store'}});
  }
