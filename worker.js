@@ -116,7 +116,7 @@ export default {async fetch(req,env){try{
   }
   return json({error:'Ruta no encontrada'},404);
  }
- if(path==='/admin'||path==='/admin/')return env.ASSETS.fetch(new Request(url.origin+'/admin.html',req));
+ if(['/admin','/admin/','/admin.html'].includes(path)){const asset=await env.ASSETS.fetch(new Request(url.origin+'/admin.html',req)),headers=new Headers(asset.headers);headers.set('Cache-Control','no-store');return new Response(asset.body,{status:asset.status,headers});}
  if(path==='/'){
   const d=migrate(await env.DATA.get('season','json')||structuredClone(initial)),p=playersFor(d),games=[...d.matches].sort((a,b)=>a.round-b.round),last=games.at(-1)||{round:0,gf:0,ga:0,opponent:"—",mvp:"Sin MVP"},gf=games.reduce((s,g)=>s+g.gf,0),ga=games.reduce((s,g)=>s+g.ga,0),wins=games.filter(g=>g.gf>g.ga).length;
   let s=await (await env.ASSETS.fetch(new Request(url.origin+'/template.html'))).text();
