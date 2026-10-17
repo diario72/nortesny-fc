@@ -30,5 +30,15 @@
         "LoginGuard"
       ]
     }
+  ],
+  "routes": [
+    {
+      "pattern": "nortesny.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.nortesny.com",
+      "custom_domain": true
+    }
   ]
 }

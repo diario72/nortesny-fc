@@ -35,6 +35,7 @@ export class LoginGuard {
 }
 export default {async fetch(req,env){try{
  let url=new URL(req.url),path=url.pathname;
+ if(['nortesny.com','www.nortesny.com'].includes(url.hostname)&&(url.protocol!=='https:'||url.hostname==='www.nortesny.com')){url.protocol='https:';url.hostname='nortesny.com';return Response.redirect(url.toString(),308);}
  if(path==='/instalar'||path==='/instalar/')return new Response(null,{status:302,headers:{Location:url.origin+'/?instalar=1','Cache-Control':'no-store'}});
  if(path==='/visit-event'){
   if(req.method!=='POST')return json({error:'Método no permitido'},405);

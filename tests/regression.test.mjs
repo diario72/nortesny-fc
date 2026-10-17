@@ -46,3 +46,7 @@ assert.equal((await request('/api/season')).status,200);
 for(const name of ['app.js','club-store.js'])new vm.Script(fs.readFileSync('public/'+name,'utf8'));
 assert(!fs.readFileSync('public/club-store.js','utf8').includes('localStorage'));
 console.log('OK: historical ledgers preserve all totals, penalties, live public/admin sync, upcoming/result/own goals/deletion, private fields excluded, five-attempt lockout.');
+
+for(const base of ['http://nortesny.com','http://www.nortesny.com','https://www.nortesny.com']){const r=await worker.fetch(new Request(base+'/admin.html?from=domain'),env);assert.equal(r.status,308);assert.equal(r.headers.get('Location'),'https://nortesny.com/admin.html?from=domain');}
+const domainHTML=await worker.fetch(new Request('https://nortesny.com/'),env);assert.equal(domainHTML.status,200);assert((await domainHTML.text()).includes('https://nortesny.com/'));
+console.log('OK: custom domain shares the existing Worker; HTTPS and www redirects preserve paths and queries.');
