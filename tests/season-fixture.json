@@ -1,0 +1,588 @@
+{
+  "base": [
+    [
+      99,
+      "Isaac Avila",
+      0,
+      1
+    ],
+    [
+      2,
+      "Mainor Escobar",
+      0,
+      1
+    ],
+    [
+      3,
+      "Leo Urbani",
+      0,
+      0
+    ],
+    [
+      4,
+      "Alexis Gomez",
+      0,
+      0
+    ],
+    [
+      5,
+      "Martin Morales «CHINO»",
+      0,
+      0
+    ],
+    [
+      6,
+      "Jeffrey Moreno",
+      0,
+      1
+    ],
+    [
+      7,
+      "Alberto Payan",
+      0,
+      0
+    ],
+    [
+      8,
+      "Oscar Lopez",
+      0,
+      0
+    ],
+    [
+      9,
+      "Raul Bautista",
+      0,
+      0
+    ],
+    [
+      10,
+      "Josue Bautista",
+      0,
+      0
+    ],
+    [
+      11,
+      "Irvin",
+      0,
+      0
+    ],
+    [
+      12,
+      "Sebas Guzman",
+      0,
+      0
+    ],
+    [
+      13,
+      "Scott Rodriguez",
+      0,
+      0
+    ],
+    [
+      14,
+      "Ian Cardenas",
+      0,
+      0
+    ],
+    [
+      15,
+      "Angel Ponce",
+      0,
+      0
+    ],
+    [
+      16,
+      "Raul Bautista-Payan",
+      0,
+      1
+    ],
+    [
+      17,
+      "Luigi",
+      0,
+      0
+    ],
+    [
+      18,
+      "Justin Gomez",
+      0,
+      0
+    ],
+    [
+      19,
+      "Dario Zonobian",
+      0,
+      0
+    ]
+  ],
+  "matches": [
+    {
+      "round": 1,
+      "opponent": "HUEHUE FC",
+      "gf": 2,
+      "ga": 0,
+      "mvp": "Leo Urbani"
+    },
+    {
+      "round": 2,
+      "opponent": "LA ASUNCION",
+      "gf": 6,
+      "ga": 1,
+      "mvp": "Mainor Escobar"
+    },
+    {
+      "round": 3,
+      "opponent": "SANTA ANA",
+      "gf": 3,
+      "ga": 1,
+      "mvp": "Alberto Payan"
+    },
+    {
+      "round": 4,
+      "opponent": "BAYERN",
+      "gf": 4,
+      "ga": 1,
+      "mvp": "Mainor Escobar"
+    },
+    {
+      "round": 5,
+      "opponent": "Gunners Fc",
+      "gf": 6,
+      "ga": 1,
+      "mvp": "Leo Urbani",
+      "ownGoalsFor": 1,
+      "ownGoalsAgainst": 0
+    }
+  ],
+  "entries": {
+    "5": {
+      "players": {
+        "2": [
+          0,
+          1
+        ],
+        "3": [
+          2,
+          0
+        ],
+        "4": [
+          0,
+          0
+        ],
+        "5": [
+          0,
+          0
+        ],
+        "6": [
+          0,
+          0
+        ],
+        "7": [
+          0,
+          1
+        ],
+        "8": [
+          0,
+          0
+        ],
+        "9": [
+          1,
+          0
+        ],
+        "10": [
+          0,
+          1
+        ],
+        "11": [
+          0,
+          0
+        ],
+        "12": [
+          0,
+          0
+        ],
+        "13": [
+          0,
+          0
+        ],
+        "14": [
+          0,
+          0
+        ],
+        "15": [
+          0,
+          0
+        ],
+        "16": [
+          2,
+          0
+        ],
+        "17": [
+          0,
+          0
+        ],
+        "18": [
+          0,
+          0
+        ],
+        "19": [
+          0,
+          0
+        ],
+        "99": [
+          0,
+          0
+        ]
+      }
+    },
+    "4": {
+      "players": {
+        "99": [
+          0,
+          0
+        ],
+        "2": [
+          2,
+          1
+        ],
+        "3": [
+          0,
+          1
+        ],
+        "4": [
+          0,
+          0
+        ],
+        "5": [
+          0,
+          0
+        ],
+        "6": [
+          0,
+          0
+        ],
+        "7": [
+          0,
+          1
+        ],
+        "8": [
+          0,
+          0
+        ],
+        "9": [
+          0,
+          0
+        ],
+        "10": [
+          0,
+          0
+        ],
+        "11": [
+          0,
+          0
+        ],
+        "12": [
+          0,
+          0
+        ],
+        "13": [
+          0,
+          0
+        ],
+        "14": [
+          0,
+          0
+        ],
+        "15": [
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0
+        ],
+        "17": [
+          0,
+          0
+        ],
+        "18": [
+          0,
+          0
+        ],
+        "19": [
+          2,
+          0
+        ]
+      }
+    },
+    "3": {
+      "players": {
+        "99": [
+          0,
+          0
+        ],
+        "2": [
+          0,
+          0
+        ],
+        "3": [
+          0,
+          0
+        ],
+        "4": [
+          0,
+          0
+        ],
+        "5": [
+          0,
+          0
+        ],
+        "6": [
+          0,
+          0
+        ],
+        "7": [
+          1,
+          1
+        ],
+        "8": [
+          0,
+          0
+        ],
+        "9": [
+          0,
+          0
+        ],
+        "10": [
+          0,
+          0
+        ],
+        "11": [
+          0,
+          0
+        ],
+        "12": [
+          0,
+          0
+        ],
+        "13": [
+          0,
+          0
+        ],
+        "14": [
+          0,
+          0
+        ],
+        "15": [
+          0,
+          0
+        ],
+        "16": [
+          1,
+          0
+        ],
+        "17": [
+          0,
+          0
+        ],
+        "18": [
+          0,
+          0
+        ],
+        "19": [
+          1,
+          0
+        ]
+      },
+      "assistsComplete": false,
+      "penaltyGoals": {
+        "16": 1
+      }
+    },
+    "1": {
+      "players": {
+        "99": [
+          0,
+          0
+        ],
+        "2": [
+          0,
+          0
+        ],
+        "3": [
+          1,
+          0
+        ],
+        "4": [
+          0,
+          0
+        ],
+        "5": [
+          0,
+          0
+        ],
+        "6": [
+          0,
+          0
+        ],
+        "7": [
+          0,
+          0
+        ],
+        "8": [
+          0,
+          0
+        ],
+        "9": [
+          0,
+          1
+        ],
+        "10": [
+          0,
+          0
+        ],
+        "11": [
+          0,
+          0
+        ],
+        "12": [
+          0,
+          0
+        ],
+        "13": [
+          0,
+          0
+        ],
+        "14": [
+          1,
+          0
+        ],
+        "15": [
+          0,
+          0
+        ],
+        "16": [
+          0,
+          0
+        ],
+        "17": [
+          0,
+          0
+        ],
+        "18": [
+          0,
+          0
+        ],
+        "19": [
+          0,
+          0
+        ]
+      },
+      "assistsComplete": false,
+      "penaltyGoals": {
+        "3": 1
+      }
+    },
+    "2": {
+      "players": {
+        "99": [
+          0,
+          0
+        ],
+        "2": [
+          1,
+          1
+        ],
+        "3": [
+          1,
+          0
+        ],
+        "4": [
+          0,
+          0
+        ],
+        "5": [
+          0,
+          0
+        ],
+        "6": [
+          0,
+          0
+        ],
+        "7": [
+          0,
+          1
+        ],
+        "8": [
+          0,
+          0
+        ],
+        "9": [
+          0,
+          0
+        ],
+        "10": [
+          1,
+          0
+        ],
+        "11": [
+          1,
+          0
+        ],
+        "12": [
+          0,
+          0
+        ],
+        "13": [
+          0,
+          0
+        ],
+        "14": [
+          0,
+          0
+        ],
+        "15": [
+          1,
+          0
+        ],
+        "16": [
+          0,
+          0
+        ],
+        "17": [
+          1,
+          0
+        ],
+        "18": [
+          0,
+          0
+        ],
+        "19": [
+          0,
+          0
+        ]
+      },
+      "assistsComplete": false
+    }
+  },
+  "version": 0,
+  "upcoming": {
+    "round": 6,
+    "opponent": "BestPro FC",
+    "date": "2026-10-18",
+    "time": "09:00",
+    "venue": "4410 McKinley Ave Los Angeles, CA 90011 United States"
+  },
+  "historicalSchema": 1,
+  "instagramNewsSeed": 1,
+  "officialNewsVersion": 1,
+  "news": [
+    {
+      "id": "official-0",
+      "title": "Comunicado oficial",
+      "date": "2026-10-06",
+      "content": "Nortesny FC expresa su firme rechazo a los hechos ocurridos el domingo 4 de octubre de 2026 durante el encuentro frente a Bayern, correspondiente a Tricolor Soccer League.\n\nEl club dispone de grabaciones de los dos incidentes que denuncia: una agresión iniciada por el portero de Bayern contra nuestro jugador Dario Zonobian, dorsal 19, y un posterior lanzamiento del balón a la cara de nuestro capitán, Raúl, por parte del mismo portero.\n\nNortesny FC pone ambas grabaciones a disposición de la organización de Tricolor Soccer League y solicita que los hechos sean revisados con rigor e imparcialidad, así como la adopción de las medidas disciplinarias que correspondan conforme al reglamento.\n\nEl club manifiesta su apoyo a los jugadores afectados y reafirma su compromiso con el respeto, el juego limpio y la seguridad de todos los participantes. La violencia no tiene cabida en nuestro deporte.\n\nNortesny FC\n6 de octubre de 2026",
+      "presentation": "official"
+    }
+  ]
+}
