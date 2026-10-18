@@ -412,3 +412,12 @@ body.page-arriving .club-header{animation:app-header-arrival .6s ease .15s both}
 #intro:focus{outline:none}#intro.signature-film #skip-intro{appearance:none;-webkit-appearance:none;background:transparent;border:0;border-radius:0;box-shadow:none}#intro.signature-film #skip-intro:focus:not(:focus-visible){outline:none}#intro.signature-film #skip-intro:focus-visible{outline:2px solid #ddca9e;outline-offset:5px}
 @media(max-width:680px){.header-actions{gap:7px}.language-control select{width:48px}.header-identity{flex:1 1 auto}.header-club{flex:1 1 auto;overflow:hidden}}
 @media(max-width:360px){.header-identity{gap:6px}.header-actions{gap:5px}.language-control select{width:45px}.header-club>strong{font-size:10px}.header-club>span{font-size:6.8px}}
+
+/* Club season honour: Sebastián Guzmán, independent of statistical leaders. */
+.profile-award[data-award="season-best"]{padding:28px 24px;gap:20px;border:1px solid #d7bd7380;border-left:4px solid #e4c87d;border-radius:16px;background:radial-gradient(ellipse at 100% 0%,#28796b66,transparent 65%),linear-gradient(125deg,#072c2a,#105549 60%,#092c2c);box-shadow:0 12px 32px #032a2926;color:#f2d991}
+.profile-award[data-award="season-best"]:after{content:"";position:absolute;inset:7px;border:1px solid #e4c87d26;border-radius:10px;pointer-events:none}
+.profile-award[data-award="season-best"]>svg{width:46px;height:46px;filter:drop-shadow(0 2px 8px #e4c87d30)}
+.profile-award[data-award="season-best"] small{font-size:12px;line-height:1.65;letter-spacing:.12em;color:#f2d991}
+.profile-award[data-award="season-best"] strong{font-size:24px;color:#fff7e0}
+.profile-award[data-award="season-best"] span{color:#c6e1d5;font-size:13px}
+@media(max-width:600px){.profile-award[data-award="season-best"]{padding:24px 18px;gap:16px}.profile-award[data-award="season-best"]>svg{width:36px;height:36px}.profile-award[data-award="season-best"] strong{font-size:21px}}
