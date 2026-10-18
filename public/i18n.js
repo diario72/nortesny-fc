@@ -35,7 +35,7 @@
  [/^(Ver publicación de Nortesny FC del|Publicación de Nortesny FC del) (.+?)( en Instagram)?$/,(_,kind,date,end)=>(kind.startsWith('Ver')?'View Nortesny FC post from ':'Nortesny FC post from ')+date+(end?' on Instagram':'')],
  [/^COMUNICACIÓN OFICIAL · (.+)$/,(_,d)=>'OFFICIAL COMMUNICATION · '+d]
  ];
- let language='es';try{language=localStorage.getItem('nfc-language')==='en'?'en':'es';}catch{}
+ let language='en';try{language=localStorage.getItem('nfc-language')==='es'?'es':'en';}catch{}
  const records=new WeakMap();let observer,scheduled=false;
  function translate(value){if(language==='es')return value;const text=value.trim();let result=phrases[text];if(result===undefined)for(const [pattern,replace] of rules)if(pattern.test(text)){result=text.replace(pattern,replace);break;}return result===undefined?value:value.replace(text,result);}
  function field(node,key,current,write){let record=records.get(node);if(!record){record={};records.set(node,record);}let item=record[key];if(!item||current!==item.last)item=record[key]={base:current,last:current};const next=translate(item.base);if(current!==next)write(next);item.last=next;}
