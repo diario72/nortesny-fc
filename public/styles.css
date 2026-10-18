@@ -412,3 +412,8 @@ body.page-arriving .club-header{animation:app-header-arrival .6s ease .15s both}
 #intro:focus{outline:none}#intro.signature-film #skip-intro{appearance:none;-webkit-appearance:none;background:transparent;border:0;border-radius:0;box-shadow:none}#intro.signature-film #skip-intro:focus:not(:focus-visible){outline:none}#intro.signature-film #skip-intro:focus-visible{outline:2px solid #ddca9e;outline-offset:5px}
 @media(max-width:680px){.header-actions{gap:7px}.language-control select{width:48px}.header-identity{flex:1 1 auto}.header-club{flex:1 1 auto;overflow:hidden}}
 @media(max-width:360px){.header-identity{gap:6px}.header-actions{gap:5px}.language-control select{width:45px}.header-club>strong{font-size:10px}.header-club>span{font-size:6.8px}}
+
+/* Captain's armband in squad list and player profile. */
+.captain-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 11px 6px 6px;border:1px solid #b9975155;border-radius:6px;background:linear-gradient(120deg,#111d32,#24344b);color:#f1d59b;font-size:11px;font-weight:600;line-height:1;letter-spacing:.04em;vertical-align:middle}
+.captain-letter{display:grid;place-items:center;width:22px;height:22px;border-radius:3px;background:#e4c582;color:#122039;font-size:13px;font-weight:800;letter-spacing:0}
+.player-row-name .captain-badge{margin-top:8px;padding:4px 8px 4px 4px;gap:6px;font-size:10px}.player-row-name .captain-letter{width:18px;height:18px;font-size:11px}
