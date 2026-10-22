@@ -10,9 +10,10 @@ function boot(reduced=false){
  const nodes=Object.fromEntries(['intro','skip-intro','replay-intro'].map(id=>[id,node()]));
  const content=[node(),node(),node()],events={},timers=new Map();let next=0;
  const document={hidden:false,body:node(),querySelectorAll:()=>content};
- const context={$:id=>nodes[id],document,reduced,scrollTo(){},addEventListener(name,fn){(events[name]??=[]).push(fn);},setTimeout(fn,ms){const id=++next;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id)};
+ const scrolls=[],location={hash:'#matches',pathname:'/',search:''},history={scrollRestoration:'auto',state:null,replaceState(_state,_title,url){location.hash='';this.url=url;}};
+ const context={$:id=>nodes[id],document,reduced,history,location,scrollTo(options){scrolls.push(options);},addEventListener(name,fn){(events[name]??=[]).push(fn);},setTimeout(fn,ms){const id=++next;timers.set(id,{fn,ms});return id;},clearTimeout:id=>timers.delete(id)};
  vm.runInNewContext(opening,context);
- return {nodes,document,content,timers,event(name,value={}){for(const fn of events[name]||[])fn(value);},run(ms){const [id,t]=[...timers].find(([,t])=>t.ms===ms)||[];assert(t,'Expected timer '+ms);timers.delete(id);t.fn();}};
+ return {nodes,document,content,timers,scrolls,history,location,event(name,value={}){for(const fn of events[name]||[])fn(value);},run(ms){const [id,t]=[...timers].find(([,t])=>t.ms===ms)||[];assert(t,'Expected timer '+ms);timers.delete(id);t.fn();}};
 }
 function unlocked(app){assert(app.nodes.intro.classList.contains('dismissed'));assert(app.content.every(el=>!el.inert));assert(!app.document.body.classList.contains('intro-active'));assert(!app.document.body.classList.contains('page-arriving'));}
 test('intro hands off and never traps an app restored from the background',()=>{
@@ -22,4 +23,10 @@ test('intro hands off and never traps an app restored from the background',()=>{
 test('skip, stale replay timers and reduced motion remain safe',()=>{
  const app=boot();app.run(4000);const stale=[...app.timers.values()][0].fn;app.nodes['replay-intro'].onclick();stale();assert(!app.nodes.intro.classList.contains('dismissed'));app.nodes['skip-intro'].onclick();unlocked(app);
  const reduced=boot(true);reduced.run(1600);unlocked(reduced);
+});
+
+test('intro clears a stale section anchor and returns to the top after layout changes',()=>{
+ const app=boot();assert.equal(app.location.hash,'');assert.equal(app.history.scrollRestoration,'manual');
+ app.scrolls.length=0;app.run(4000);app.run(700);assert.equal(app.scrolls.at(-1).top,0);assert.equal(app.scrolls.at(-1).behavior,'instant');
+ app.nodes['replay-intro'].onclick();app.scrolls.length=0;app.nodes['skip-intro'].onclick();assert.equal(app.scrolls.at(-1).top,0);
 });
