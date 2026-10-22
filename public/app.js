@@ -43,7 +43,23 @@
  document.querySelectorAll('[data-position]').forEach(b=>b.onclick=()=>{position=b.dataset.position;document.querySelectorAll('[data-position]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));roster();});
  const awardCutouts={3:'/assets/winner-leo.webp',2:'/assets/winner-mainor.webp',7:'/assets/winner-alberto-v2.webp'};
  const portraitCutouts=new Map();
- function cutoutPortrait(src){if(portraitCutouts.has(src))return portraitCutouts.get(src);const task=new Promise((resolve,reject)=>{const photo=new Image();photo.onload=()=>{try{const canvas=document.createElement('canvas');canvas.width=320;canvas.height=Math.round(320*photo.naturalHeight/photo.naturalWidth);const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(photo,0,0,canvas.width,canvas.height);const frame=ctx.getImageData(0,0,canvas.width,canvas.height),d=frame.data,w=canvas.width,h=canvas.height;for(let y=0;y<h;y++){let left=w,right=-1;for(let x=0;x<w;x++){const j=(y*w+x)*4,min=Math.min(d[j],d[j+1],d[j+2]),max=Math.max(d[j],d[j+1],d[j+2]);if(min<210||max-min>32){left=Math.min(left,x);right=x;}}for(let x=0;x<w;x++)d[(y*w+x)*4+3]=x<left||x>right?0:255;}ctx.putImageData(frame,0,0);resolve(canvas.toDataURL('image/png'));}catch(e){reject(e);}};photo.onerror=reject;photo.src=src;});portraitCutouts.set(src,task);return task;}
+ // Remove the external white matte, including its pale antialiasing fringe.
+ function portraitMatte(d,w,h){
+  const mask=new Uint8Array(w*h);
+  for(let y=0;y<h;y++){
+   let left=w,right=-1;
+   for(let x=0;x<w;x++){const j=(y*w+x)*4,min=Math.min(d[j],d[j+1],d[j+2]),max=Math.max(d[j],d[j+1],d[j+2]);if(d[j+3]>0&&(min<190||max-min>40)){left=Math.min(left,x);right=x;}}
+   for(let x=left;x<=right;x++)mask[y*w+x]=255;
+  }
+  // Contract the silhouette by one pixel at working resolution, keeping white kit details inside it.
+  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
+   const j=(y*w+x)*4;let inside=255;
+   for(let dy=-1;dy<=1&&inside;dy++)for(let dx=-1;dx<=1;dx++){const xx=x+dx,yy=y+dy;if(xx<0||xx>=w||yy<0||yy>=h||!mask[yy*w+xx]){inside=0;break;}}
+   d[j+3]=Math.min(d[j+3],inside);
+  }
+  return d;
+ }
+ function cutoutPortrait(src){if(portraitCutouts.has(src))return portraitCutouts.get(src);const task=new Promise((resolve,reject)=>{const photo=new Image();photo.onload=()=>{try{const canvas=document.createElement('canvas');canvas.width=320;canvas.height=Math.round(320*photo.naturalHeight/photo.naturalWidth);const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(photo,0,0,canvas.width,canvas.height);const frame=ctx.getImageData(0,0,canvas.width,canvas.height);portraitMatte(frame.data,canvas.width,canvas.height);ctx.putImageData(frame,0,0);resolve(canvas.toDataURL('image/png'));}catch(e){reject(e);}};photo.onerror=reject;photo.src=src;});portraitCutouts.set(src,task);return task;}
  function refreshAwardPortraits(){document.querySelectorAll('.award-face[data-portrait-src]').forEach(img=>{const original=img.getAttribute('data-portrait-src');img.removeAttribute('data-portrait-src');cutoutPortrait(original).then(async src=>{if(!img.isConnected)return;img.src=src;if(img.decode)await img.decode();if(img.isConnected)img.classList.remove('cutout-pending');}).catch(()=>{portraitCutouts.delete(original);});});}
  function awardFace(name){const p=NFC.players().find(p=>p[1]===name);if(!p)return '';const image=portraits[p[0]];return image?'<img class="award-face cutout-pending" data-portrait-src="'+image+'" alt="" aria-hidden="true" width="80" height="90" loading="lazy" decoding="async">':'';}
  // Recognition uses the same recorded totals and includes every tied leader.
@@ -67,5 +83,5 @@
  function prioritizeMatch(){const last=games().at(-1),upcoming=NFC.season.upcoming;const resultFirst=Boolean(last&&(!upcoming||Number(upcoming.round)<=Number(last.round)));const home=$('home'),latest=$('latest');if(resultFirst){if(latest.parentElement!==home)home.insertBefore(latest,home.firstChild);}else if(latest.parentElement!==latestSlot){latestSlot.appendChild(latest);}latestSlot.hidden=resultFirst;$('next').hidden=resultFirst;home.classList.toggle('result-first',resultFirst);home.classList.toggle('result-win',resultFirst&&last.gf>last.ga);}
  function render(){prioritizeMatch();const t=totals();$('hero-facts').innerHTML=[[games().length,'Jornadas'],[t.wins,'Victorias'],[t.gf,'Goles a favor']].map(([v,k])=>'<div><strong>'+v+'</strong><small>'+k+'</small></div>').join('');renderNext();renderLatest();roster();renderStats();renderHonours();renderHistory();renderNews();refreshAwardPortraits();if(document.body.classList.contains('intro-active'))scrollTo({top:0,left:0,behavior:'instant'});}
  NFC.ready.then(()=>{render();scrollTo({top:0,left:0,behavior:'instant'});if(new URLSearchParams(location.search).has('instalar'))setTimeout(showInstall,5000);}).catch(e=>{toast(e.message);$('next-content').textContent='No se pudieron cargar los datos. Recarga la página.';});addEventListener('nfc:change',render);addEventListener('nfc:language',()=>{if(NFC.season)render();});
- if('serviceWorker'in navigator)navigator.serviceWorker.register('/admin-sw.js?v=premium42',{scope:'/',updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});
+ if('serviceWorker'in navigator)navigator.serviceWorker.register('/admin-sw.js?v=premium43',{scope:'/',updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});
 })();

@@ -20,3 +20,17 @@ test('every statistics redraw loads transparent portraits before making them vis
   for(const img of images)assert.ok(!img.classes.has('cutout-pending'),'show only decoded transparent portrait');
  }
 });
+
+test('portrait matte removes pale hair fringes while keeping white kit details',()=>{
+ const context={Uint8Array};vm.createContext(context);vm.runInContext(extract('portraitMatte',' function cutoutPortrait'),context);
+ const w=13,h=13,d=new Uint8ClampedArray(w*h*4).fill(255);
+ const pixel=(x,y,r,g,b)=>d.set([r,g,b,255],(y*w+x)*4);
+ for(let y=2;y<=10;y++)for(let x=2;x<=10;x++)pixel(x,y,225,225,225);
+ for(let y=3;y<=9;y++)for(let x=3;x<=9;x++)pixel(x,y,20,35,75);
+ pixel(6,7,255,255,255);context.portraitMatte(d,w,h);
+ assert.equal(d[(2*w+6)*4+3],0,'pale top fringe is transparent');
+ assert.equal(d[(3*w+6)*4+3],0,'mixed outer hair edge is contracted');
+ assert.equal(d[(6*w+6)*4+3],255,'subject remains opaque');
+ assert.equal(d[(7*w+6)*4+3],255,'internal white jersey line remains visible');
+ assert.equal(d[3],0,'outside white background is transparent');
+});

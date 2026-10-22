@@ -454,3 +454,16 @@ body.page-arriving .club-header{animation:app-header-arrival .6s ease .15s both}
 
 /* Avoid scroll anchoring while the result moves to the top during loading. */
 body.intro-active,body.intro-active main{overflow-anchor:none}
+
+/* Square match MVP award with a prominent player portrait. */
+.home-match>.latest .latest-mvp-award,.match-centre .result-details>.latest-mvp-award{
+ width:min(100%,260px);aspect-ratio:1;box-sizing:border-box;padding:18px;
+ display:flex;flex-direction:column;align-items:center;justify-content:center;
+ text-align:center;border:1px solid #e4c780;border-radius:8px;
+ background:linear-gradient(135deg,#faebc2,#d3b16b);justify-self:end
+}
+.latest-mvp-award .result-mvp-person{flex-direction:column;gap:8px;width:100%}
+.latest-mvp-award .result-mvp-person .award-face{width:138px;height:154px;max-width:100%;object-fit:contain;object-position:center bottom}
+.home-match>.latest .latest-mvp-award .mvp-person,.match-centre .latest-mvp-award .mvp-person{font-size:18px;line-height:1.2;color:#34280e}
+.home-match>.latest .latest-mvp-award small,.match-centre .latest-mvp-award small{color:#654915;font-size:9px;line-height:1.4;letter-spacing:.08em;margin:0 0 8px}
+@media(max-width:680px){.home-match>.latest .latest-mvp-award,.match-centre .result-details>.latest-mvp-award{justify-self:center}}
