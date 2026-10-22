@@ -21,7 +21,7 @@
  [/^PLANTILLA · #(\d+)$/,(_,n)=>"SQUAD · #"+n],
  [/^(\d+) (sep|oct) (\d{4})$/,(_,day,month,year)=>(month==="oct"?"Oct":"Sep")+" "+day+", "+year],
  [/^(Jornada|JORNADA)(s)? (\d+(?:, \d+)*)( · FINALIZADO)?$/,(_,word,plural,n,end)=>(word==='JORNADA'?'MATCHDAY':'Matchday')+(plural?'s':'')+' '+n+(end?' · FULL TIME':'')],
- [/^ÚLTIMO MVP · JORNADA (\d+)$/,(_,n)=>'LATEST MVP · MATCHDAY '+n],
+ [/^MVP DEL PARTIDO · JORNADA (\d+)$/,(_,n)=>'MATCH MVP · MATCHDAY '+n],
  [/^MVP · JORNADA (\d+)$/,(_,n)=>'MVP · MATCHDAY '+n],
  [/^(VICTORIA|EMPATE|DERROTA) · FINALIZADO$/,(_,s)=>phrases[s]+' · FULL TIME'],
  [/^(\d+) jugadores$/,(_,n)=>n+' players'],[/^(\d+) jornadas disputadas$/,(_,n)=>n+' matchdays played'],

@@ -438,3 +438,16 @@ body.page-arriving .club-header{animation:app-header-arrival .6s ease .15s both}
 /* Never paint source portraits or white placeholder circles in award panels. */
 .award-face{background:transparent;border:0;border-radius:0}
 .award-face.cutout-pending{visibility:hidden}
+
+/* Compact, centered desktop result; retain the existing mobile composition. */
+@media (min-width:1001px){
+ .club-header .desktop-nav{display:none}
+ .home-match.result-first>.latest{min-height:0;padding:calc(144px + var(--safe-top)) max(48px,var(--safe-left),var(--safe-right)) 64px;box-sizing:border-box}
+ .home-match>.latest .result-content{width:100%;max-width:1160px;box-sizing:border-box;margin:0 auto;padding:0}
+ .home-match>.latest .section-top{margin-bottom:28px}
+ .home-match>.latest .scoreboard{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:32px;margin:32px 0}
+ .home-match>.latest .scoreboard .team{font-size:clamp(24px,2.4vw,34px)}
+ .home-match>.latest .big-score{font-size:clamp(80px,7vw,108px)}
+ .home-match>.latest .result-details{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px}
+ .home-match>.latest .result-more{margin-top:24px}
+}
