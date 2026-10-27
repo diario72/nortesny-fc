@@ -37,6 +37,14 @@ const ledger=Object.fromEntries(season.base.map(p=>[p[0],[0,0]]));ledger[19]=[1,
 response=await request('/api/match',{body:{round:6,opponent:'BestPro FC',gf:2,ga:1,mvp:'Dario Zonobian',ownGoalsFor:1,ownGoalsAgainst:0,players:ledger,version:season.version}});assert.equal(response.status,200);season=await response.json();
 const publicSeason=(await (await request('/club-data.json')).json()).season;
 assert.equal(publicSeason.upcoming,null);assert.equal(publicSeason.matches.length,6);assert.equal(playersFor(publicSeason).find(p=>p[0]===19)[2],4);
+// Explicit no-MVP survives saving, public delivery, reloading and reassignment.
+const noAward={round:6,opponent:'BestPro FC',gf:2,ga:1,mvp:null,ownGoalsFor:1,ownGoalsAgainst:0,players:ledger,version:season.version};
+response=await request('/api/match',{body:noAward});assert.equal(response.status,200);season=await response.json();
+assert.equal(season.matches.find(g=>g.round===6).mvp,null);
+assert.equal((await (await request('/club-data.json')).json()).season.matches.find(g=>g.round===6).mvp,null);
+assert.deepEqual(playersFor(season),playersFor(publicSeason),'no-MVP does not change goals or assists');
+for(const bad of ['',undefined,'none','Invented Player']){const body={...noAward,mvp:bad,version:season.version};assert.equal((await request('/api/match',{body})).status,400,'unselected and invalid MVPs must still fail');}
+response=await request('/api/match',{body:{...noAward,mvp:'Dario Zonobian',version:season.version}});assert.equal(response.status,200);season=await response.json();assert.equal(season.matches.find(g=>g.round===6).mvp,'Dario Zonobian');
 response=await request('/api/delete-match',{body:{round:6,version:season.version}});assert.equal(response.status,200);
 assert.equal((await (await request('/club-data.json')).json()).season.matches.length,5);
 for(let i=0;i<4;i++)assert.equal((await request('/api/season',{password:'bad',ip:'203.0.113.99'})).status,401);

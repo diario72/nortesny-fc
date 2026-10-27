@@ -1,4 +1,4 @@
-const VERSION='nortesny-2026-10-17-premium46';
+const VERSION='nortesny-2026-10-17-premium47';
 self.addEventListener('install',event=>{self.skipWaiting()});
 self.addEventListener('activate',event=>{
   event.waitUntil((async()=>{

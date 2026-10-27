@@ -1,6 +1,7 @@
 /* Presentation translations only: player names, scores and persisted club data stay intact. */
 (()=>{
  const phrases={
+ 'Esfuerzo colectivo':'Collective effort','El equipo primero':'Team first','EL EQUIPO PRIMERO':'TEAM FIRST','Sin MVP en este partido':'No individual MVP for this match',
  'Capitán':'Captain',
  'Saltar intro':'Skip intro','Saltar al contenido':'Skip to content','TEMPORADA 2026':'SEASON 2026','Temporada 2026':'Season 2026','CLUB DE FÚTBOL':'FOOTBALL CLUB','Presentación de Nortesny FC':'Nortesny FC introduction','Escudo oficial de Nortesny FC':'Official Nortesny FC crest','Escudo de Nortesny FC':'Nortesny FC crest','Nortesny FC, inicio':'Nortesny FC, home','Instagram oficial de Nortesny FC':'Official Nortesny FC Instagram',
  'Abrir menú':'Open menu','Cerrar menú':'Close menu','Cerrar':'Close','Navegación principal':'Main navigation','Todas las secciones':'All sections','Inicio':'Home','Jornadas':'Matchdays','Plantilla':'Squad','Temporada':'Season','El club':'The club','Estadísticas de la temporada':'Season statistics','Noticias del club':'Club news','Publicaciones de Instagram':'Instagram posts','Sobre el club':'About the club','Administración':'Administration','Administración ↗':'Administration ↗',
@@ -21,6 +22,7 @@
  [/^PLANTILLA · #(\d+)$/,(_,n)=>"SQUAD · #"+n],
  [/^(\d+) (sep|oct) (\d{4})$/,(_,day,month,year)=>(month==="oct"?"Oct":"Sep")+" "+day+", "+year],
  [/^(Jornada|JORNADA)(s)? (\d+(?:, \d+)*)( · FINALIZADO)?$/,(_,word,plural,n,end)=>(word==='JORNADA'?'MATCHDAY':'Matchday')+(plural?'s':'')+' '+n+(end?' · FULL TIME':'')],
+ [/^EL EQUIPO PRIMERO · JORNADA (\d+)$/,(_,n)=>'TEAM FIRST · MATCHDAY '+n],
  [/^MVP DEL PARTIDO · JORNADA (\d+)$/,(_,n)=>'MATCH MVP · MATCHDAY '+n],
  [/^MVP · JORNADA (\d+)$/,(_,n)=>'MVP · MATCHDAY '+n],
  [/^(VICTORIA|EMPATE|DERROTA) · FINALIZADO$/,(_,s)=>phrases[s]+' · FULL TIME'],
